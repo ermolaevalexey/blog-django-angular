@@ -4,6 +4,6 @@
            {{ post.published_date | date: 'dd/MM/yyyy'}}
       </div>
             <h2><a href="#/posts/{{ post.id }}">{{ post.title }}</a></h2>
-            <p>{{ post.text }}</p><br>
+            <p>{{ post.text | limitText: 250 }}</p><br>
     </div>
 </div>

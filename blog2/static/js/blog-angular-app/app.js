@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var blogApp = angular.module('BlogApp', ['ngRoute', 'blogControllers']);
+var blogApp = angular.module('BlogApp', ['ngRoute', 'blogControllers', 'blogFilters']);
 
 blogApp.config(['$routeProvider', 
     function ($routeProvider) {

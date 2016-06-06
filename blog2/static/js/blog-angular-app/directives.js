@@ -3,4 +3,15 @@
  */
 'use strict';
 
-var blogDirectives = angular.module('blogDrectives', []);
+var blogDirectives = angular.module('blogDirectives', []);
+
+blogDirectives.directive('userBar', function () {
+   return {
+       restrict: 'E',
+       scope: {
+          user: '='
+       },
+       templateUrl: '/static/js/blog-angular-app/templates/user-bar.html',
+       controller: blogControllers.CurrentUserController
+   }
+});

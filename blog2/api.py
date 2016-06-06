@@ -1,9 +1,9 @@
 # blog2/api.py
 from django.contrib.auth.models import User
 from tastypie import fields
-from tastypie.authorization import DjangoAuthorization
+from tastypie.authorization import DjangoAuthorization, Authorization
 from tastypie.authentication import BasicAuthentication
-from tastypie.resources import ModelResource
+from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from blog2.models import Post
 
 class UserResource(ModelResource):
@@ -15,6 +15,9 @@ class UserResource(ModelResource):
         allowed_methods = ['get', 'post']
         authorization = DjangoAuthorization()
         authentication = BasicAuthentication()
+        filtering = {
+            'username': ALL
+        }
         #def dehydrate(self, bundle):
         #    if bundle.request.user.pk == bundle.obj.pk:
         #        bundle.data['email'] = bundle.obj.email
@@ -29,6 +32,12 @@ class PostResource(ModelResource):
     class Meta:
         queryset = Post.objects.all()
         resource_name = 'post'
+        authorization = Authorization()
+        allowed_methods = ['get', 'post']
+        filtering = {
+            'user': ALL_WITH_RELATIONS,
+            'pub_date': ['exact', 'lt', 'lte', 'gte', 'gt']
+        }
 
 class CurrentUserResource(ModelResource):
     class Meta:

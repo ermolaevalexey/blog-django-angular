@@ -1,2 +1,5 @@
 .idea
 env
+blog/*.pyc
+blog2/*.pyc
+node_modules

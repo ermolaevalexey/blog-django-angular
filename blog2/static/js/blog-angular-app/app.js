@@ -16,6 +16,10 @@ blogApp.config(['$routeProvider',
             templateUrl: '/static/js/blog-angular-app/templates/post-detail.html',
             controller: 'PostDetailCtrl'
         }).
+        when('/add-post/', {
+            templateUrl: '/static/js/blog-angular-app/templates/add-post.html',
+            controller: 'AddPostController'
+        }).
         otherwise({
             redirectTo: '/'
         });

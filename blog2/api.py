@@ -46,7 +46,7 @@ class CurrentUserResource(ModelResource):
         queryset = User.objects.all()
         resource_name = 'current_user'
         fields = ['username', 'first_name', 'last_name', 'email', 'last_login']
-        allowed_methods = ['get', 'post']
+        allowed_methods = ['get', 'post', 'put', 'delete']
         authorization = Authorization()
         authentication = BasicAuthentication()
 

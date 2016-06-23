@@ -2,4 +2,5 @@
 env
 blog/*.pyc
 blog2/*.pyc
-node_modules
+*.pyc
+*node_modules

@@ -14,7 +14,7 @@ class UserResource(ModelResource):
         resource_name = 'auth/user'
         fields = ['username', 'first_name', 'last_name', 'email', 'last_login']
         excludes = ['password', 'is_active', 'is_staff', 'is_superuser']
-        allowed_methods = ['get', 'post']
+        allowed_methods = ['get', 'post', 'put', 'delete']
         authorization = Authorization()
         authentication = BasicAuthentication()
         filtering = {
@@ -35,7 +35,7 @@ class PostResource(ModelResource):
         resource_name = 'post'
         authentication = Authentication()
         authorization = Authorization()
-        allowed_methods = ['get', 'post']
+        allowed_methods = ['get', 'post', 'put', 'delete']
         filtering = {
             'user': ALL_WITH_RELATIONS,
             'pub_date': ['exact', 'lt', 'lte', 'gte', 'gt']

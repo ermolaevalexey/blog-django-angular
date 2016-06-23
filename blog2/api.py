@@ -3,13 +3,11 @@ from django.contrib.auth.models import User
 from tastypie import fields
 from django.db import models
 from tastypie.authorization import DjangoAuthorization, Authorization
-from tastypie.authentication import BasicAuthentication
+from tastypie.authentication import BasicAuthentication, Authentication
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from blog2.models import Post
 
 class UserResource(ModelResource):
-
-    posts = fields.ToManyField('blog2.api.resources.PostResource', 'posts')
 
     class Meta:
         queryset = User.objects.all()
@@ -17,15 +15,11 @@ class UserResource(ModelResource):
         fields = ['username', 'first_name', 'last_name', 'email', 'last_login']
         excludes = ['password', 'is_active', 'is_staff', 'is_superuser']
         allowed_methods = ['get', 'post']
-        #authorization = Authorization()
-        #authentication = BasicAuthentication()
+        authorization = Authorization()
+        authentication = BasicAuthentication()
         filtering = {
             'username': ALL
         }
-        #def dehydrate(self, bundle):
-        #    if bundle.request.user.pk == bundle.obj.pk:
-        #        bundle.data['email'] = bundle.obj.email
-        #    return bundle
 
 class PostResource(ModelResource):
     # Maps `Entry.user` to a Tastypie `ForeignKey` field named `user`,
@@ -39,8 +33,8 @@ class PostResource(ModelResource):
     class Meta:
         queryset = Post.objects.all()
         resource_name = 'post'
+        authentication = Authentication()
         authorization = Authorization()
-        authentication = BasicAuthentication()
         allowed_methods = ['get', 'post']
         filtering = {
             'user': ALL_WITH_RELATIONS,

@@ -5,5 +5,13 @@
          </div>
          <h2><a href="#/posts/{{ post.id }}">{{ post.title }}</a></h2>
          <p>{{ post.text | limitText: 250 }}</p><br>
+         <edit-delete-post></edit-delete-post>
+         <div class="edit-post-area" ng-if="post.isEditing">
+             <input type="text" ng-model="post.title" value="{{ post.title }}">
+             <textarea ng-model="post.text">
+                 {{ post.text }}
+             </textarea>
+             <button type="submit" data-ng-click="editPost(post); toggleEditMode(post, false)">Cохранить</button>
+         </div>
     </div>
 </div>

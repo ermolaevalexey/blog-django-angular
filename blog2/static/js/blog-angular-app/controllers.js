@@ -12,6 +12,43 @@ blogControllers.controller('PostListCtrl', ['$scope', '$http',
         $http.get('api/v1/post/?format=json').then(function (data) {
             $scope.posts = data.data.objects;
         });
+
+        $scope.toggleEditMode = function (post, isEditing) {
+            post.isEditing = isEditing;
+        };
+
+        $scope.editPost = function (post) {
+            $scope.editingPost = post;
+            $scope.editingPost.isEditing = true;
+            $scope.editingPost.author = post.author;
+            $scope.editingPost.title = post.title;
+            $scope.editingPost.text = post.text;
+            console.log($scope.editingPost);
+            var data = {
+                'author': $scope.editingPost.author,
+                'text': $scope.editingPost.text,
+                'title': $scope.editingPost.title
+            };
+            $http({
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                },
+                url: $scope.editingPost.resource_uri,
+                method: 'PUT',
+                data: data
+            }).success(function (data, status) {
+                console.log(data, status);
+
+            }).error(function (error) {
+                console.log(error);
+            });
+        };
+
+        $scope.deletePost = function (post) {
+            $scope.deletingPost = post;
+            $scope.deletingPost.isDeleting = true;
+            console.log($scope.deletingPost);
+        };
     }
 ]);
 
@@ -38,7 +75,6 @@ blogControllers.controller('CurrentUserController', ['$scope', '$http',
         $scope.currentUser = null;
         $http.get('/api/v1/auth/user/?format=json').then(function (data) {
             $scope.currentUser = data.data.objects;
-            console.log($scope.currentUser);
         });
     }
 ]);

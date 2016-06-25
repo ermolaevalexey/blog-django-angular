@@ -15,3 +15,11 @@ blogDirectives.directive('userBar', function () {
        controller: blogControllers.CurrentUserController
    }
 });
+
+blogDirectives.directive('editDeletePost', function () {
+   return {
+       restrict: 'E',
+       templateUrl: 'static/js/blog-angular-app/templates/edit-delete-post.html',
+       controller: blogControllers.PostListCtrl
+   }
+});

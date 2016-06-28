@@ -20,3 +20,11 @@ blogDirectives.directive('editDeletePost', function () {
        controller: blogControllers.PostListCtrl
    }
 });
+
+blogDirectives.directive('postContent', function () {
+   return {
+       restrict: 'E',
+       templateUrl: 'static/js/blog-angular-app/templates/post-content.html',
+       controller: blogControllers.PostListCtrl
+   }
+});

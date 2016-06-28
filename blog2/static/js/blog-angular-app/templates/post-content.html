@@ -1,0 +1,7 @@
+<div class="date">
+    {{ post.created_date | date: 'dd/MM/yyyy'}}
+</div>
+<h2>
+    <a href="#/posts/{{ post.id }}">{{ post.title }}</a>
+</h2>
+<div>{{ post.text | limitText: 250 }}</div><br>

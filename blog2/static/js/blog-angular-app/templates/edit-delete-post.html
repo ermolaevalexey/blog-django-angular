@@ -1,2 +1,10 @@
-<a href="" data-ng-click="toggleEditMode(post, true)">Редактировать</a>
+<a href="" data-ng-click="post.isEditing = !post.isEditing">Редактировать</a>
 <a href="" data-ng-click="">Удалить</a>
+
+<div class="edit-post-area" ng-if="post.isEditing">
+    <input type="text" ng-model="post.title" class="form-control" value="{{ post.title }}">
+    <textarea ng-model="post.text" class="form-control" rows="5">
+        {{ post.text }}
+    </textarea>
+    <button type="submit" class="btn btn-primary" data-ng-click="editPost(post); toggleEditMode(post, false)">Cохранить</button>
+</div>

@@ -16,11 +16,11 @@
     <script type="text/javascript" src="{% static 'js/blog-angular-app/filters.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/blog-angular-app/services.js' %}"></script>
 </head>
-<body ng-app="BlogApp">
+<body ng-app="BlogApp" data-ng-controller="CurrentUserController">
 	 <div class="page-header">
         <a href="/#/add-post/" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 		<h1><a href="/#/">hi there!</a></h1>
-        <user-bar data-user="currentUser"></user-bar>
+        <user-bar></user-bar>
 	 </div>
 	 <div class="content container">
         <div class="row">

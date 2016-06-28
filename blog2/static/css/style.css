@@ -60,3 +60,7 @@ h2 a {
     .post h1 a, .post h1 a:visited {
         color: #000000;
     }
+
+    .edit-post-area > *:not(:last-child) {
+        margin-bottom: 1.2em;
+    }

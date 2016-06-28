@@ -1,6 +1,6 @@
 <div>
-    <div class="date" ng-if="postDetail.published_date">
-           {{ postDetail.published_date | date: 'dd/MM/yyyy'}}
+    <div class="date">
+           {{ postDetail.created_date | date: 'dd/MM/yyyy'}}
     </div>
     <h1>{{ postDetail.title }}</h1>
     <p>{{ postDetail.text }}</p>

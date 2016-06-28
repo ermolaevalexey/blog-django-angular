@@ -3,25 +3,27 @@
  */
 'use strict';
 
-var blogApp = angular.module('BlogApp', ['ngRoute', 'blogControllers', 'blogDirectives', 'blogFilters']);
+(function (exports) {
+    exports.blogApp = angular.module('BlogApp', ['ngRoute', 'blogControllers', 'blogDirectives', 'blogFilters'])
 
-blogApp.config(['$routeProvider', 
-    function ($routeProvider) {
-        $routeProvider.
-        when('/', {
-            templateUrl: '/static/js/blog-angular-app/templates/posts.html',
-            controller: 'PostListCtrl'
-        }).
-        when('/posts/:postId', {
-            templateUrl: '/static/js/blog-angular-app/templates/post-detail.html',
-            controller: 'PostDetailCtrl'
-        }).
-        when('/add-post/', {
-            templateUrl: '/static/js/blog-angular-app/templates/add-post.html',
-            controller: 'AddPostController'
-        }).
-        otherwise({
-            redirectTo: '/'
-        });
-    }
-]);
+    .config(['$routeProvider',
+        function ($routeProvider) {
+            $routeProvider.
+            when('/', {
+                templateUrl: '/static/js/blog-angular-app/templates/posts.html',
+                controller: 'PostListCtrl'
+            }).
+            when('/posts/:postId', {
+                templateUrl: '/static/js/blog-angular-app/templates/post-detail.html',
+                controller: 'PostDetailCtrl'
+            }).
+            when('/add-post/', {
+                templateUrl: '/static/js/blog-angular-app/templates/add-post.html',
+                controller: 'AddPostController'
+            }).
+            otherwise({
+                redirectTo: '/'
+            });
+        }
+    ]);
+})(this);

@@ -64,3 +64,7 @@ h2 a {
     .edit-post-area > *:not(:last-child) {
         margin-bottom: 1.2em;
     }
+
+    .post-form > *:not(:last-child) {
+        margin-bottom: 1.2em;
+    }

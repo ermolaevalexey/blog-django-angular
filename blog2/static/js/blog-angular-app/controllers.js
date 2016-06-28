@@ -42,6 +42,9 @@ blogControllers.controller('AddPostController', ['$scope', '$http', '$controller
                 data: data
             }).success(function (data, status, headers, config) {
                 console.log(data, status, headers, config);
+                $scope.title = document.getElementsByName('postTitle').value;
+                $scope.text = document.getElementsByName('postText').value;
+                window.location.href = '/';
             }).error(function (error) {
                 console.log(error);
             });
@@ -54,10 +57,13 @@ blogControllers.controller('PostListCtrl', ['$scope', '$http',
         $scope.posts = null;
         $scope.currentUser = $scope.$parent.currentUser;
 
-        $http.get('api/v1/post/?format=json').then(function (data) {
-            $scope.posts = data.data.objects;
-            $scope.currentUser = $scope.$parent.currentUser;
-        });
+
+        $scope.renderPostList = function () {
+            $http.get('api/v1/post/?format=json').then(function (data) {
+                $scope.posts = data.data.objects;
+                $scope.currentUser = $scope.$parent.currentUser;
+            });
+        };
 
         $scope.toggleEditMode = function (post, isEditing) {
             post.isEditing = isEditing;
@@ -94,7 +100,23 @@ blogControllers.controller('PostListCtrl', ['$scope', '$http',
             $scope.deletingPost = post;
             $scope.deletingPost.isDeleting = true;
             console.log($scope.deletingPost);
+            if (confirm('Вы действительно хотите это сделать?')) {
+                $http({
+                    headers: {
+                      'Content-Type': 'application/json; charset=UTF-8'
+                    },
+                    url: $scope.deletingPost.resource_uri,
+                    method: 'DELETE'
+                }).success(function () {
+                    console.log('Deleted');
+                    $scope.renderPostList();
+                }).error(function (error) {
+                   console.log(error);
+                });
+            }
         };
+
+        $scope.renderPostList();
     }
 ]);
 

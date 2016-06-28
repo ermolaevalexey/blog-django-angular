@@ -1,5 +1,5 @@
 <a href="" data-ng-click="post.isEditing = !post.isEditing">Редактировать</a>
-<a href="" data-ng-click="">Удалить</a>
+<a href="" data-ng-click="deletePost(post)">Удалить</a>
 
 <div class="edit-post-area" ng-if="post.isEditing">
     <input type="text" ng-model="post.title" class="form-control" value="{{ post.title }}">

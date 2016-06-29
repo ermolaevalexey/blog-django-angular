@@ -2,6 +2,7 @@
  * Created by aleksejermolaev on 04.06.16.
  */
 'use strict';
+
 (function (exports) {
     /* Controllers */
     exports.blogControllers = angular.module('blogControllers', [])

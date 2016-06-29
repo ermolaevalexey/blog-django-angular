@@ -89,7 +89,7 @@
                     data: data
                 }).success(function (data, status) {
                     console.log(data, status);
-
+                    currentScope.renderPostList();
                 }).error(function (error) {
                     console.log(error);
                 });

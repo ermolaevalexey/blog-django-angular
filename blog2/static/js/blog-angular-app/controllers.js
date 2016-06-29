@@ -63,8 +63,8 @@
                 });
             };
 
-            $scope.toggleEditMode = function (post, isEditing) {
-                post.isEditing = isEditing;
+            $scope.toggleEditMode = function (post) {
+                post.isEditing = !post.isEditing;
             };
 
             $scope.editPost = function (post) {

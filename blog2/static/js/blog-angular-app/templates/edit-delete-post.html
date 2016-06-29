@@ -1,5 +1,5 @@
 <div class="edit-post-controls">
-    <a href="" data-ng-click="post.isEditing = !post.isEditing" class="btn btn-info">Редактировать</a>
+    <a href="" data-ng-click="toggleEditMode(post)" class="btn btn-info">Редактировать</a>
     <a href="" data-ng-click="deletePost(post)" class="btn btn-danger">Удалить</a>
 </div>
 
@@ -8,5 +8,5 @@
     <textarea ng-model="post.text" class="form-control" rows="5">
         {{ post.text }}
     </textarea>
-    <button type="submit" class="btn btn-primary" data-ng-click="editPost(post); toggleEditMode(post, false)">Cохранить</button>
+    <button type="submit" class="btn btn-primary" data-ng-click="editPost(post); toggleEditMode(post)">Cохранить</button>
 </div>

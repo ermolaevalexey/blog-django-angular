@@ -55,10 +55,26 @@ h2 a {
 
     .post {
         margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #cccccc;
+    }
+
+    .post:last-child {
+        border-bottom: none;
     }
 
     .post h1 a, .post h1 a:visited {
         color: #000000;
+    }
+
+    .edit-post-area {
+        padding: 1em;
+        background: #c4dce8;
+        -webkit-transition: background 0.3s ease-in-out;
+        -moz-transition: background 0.3s ease-in-out;
+        -ms-transition: background 0.3s ease-in-out;
+        -o-transition: background 0.3s ease-in-out;
+        transition: background 0.3s ease-in-out;
     }
 
     .edit-post-area > *:not(:last-child) {
@@ -66,5 +82,9 @@ h2 a {
     }
 
     .post-form > *:not(:last-child) {
+        margin-bottom: 1.2em;
+    }
+
+    .edit-post-controls {
         margin-bottom: 1.2em;
     }

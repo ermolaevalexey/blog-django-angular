@@ -8,9 +8,9 @@
 
     .controller('CurrentUserController', ['$scope', '$http',
         function ($scope, $http) {
-            $scope.currentUser = null;
+            $scope.currentUser;
             $http.get('/api/v1/auth/user/?format=json').then(function (data) {
-                $scope.currentUser = data.data.objects;
+                $scope.currentUser = data.data.objects[0];
             });
         }
     ])
@@ -26,7 +26,7 @@
             //$scope.published_date = $scope.created_date;
             $scope.addPost = function () {
                 var data = {
-                    "author": currentUserCtrlViewModel.currentUser[0].resource_uri,
+                    "author": currentUserCtrlViewModel.currentUser.resource_uri,
                     //"created_date": $scope.created_date,
                     //"published_date": $scope.published_date,
                     "text": $scope.text,
@@ -52,19 +52,14 @@
         }
     ])
 
-    .controller('PostListCtrl', ['$scope', '$http',
-        function ($scope, $http) {
+    .controller('PostListCtrl', ['$scope', '$http', '$controller',
+        function ($scope, $http, $controller) {
             $scope.posts = null;
-            $scope.currentUser = null;
             var currentScope = $scope;
-
+            $controller('CurrentUserController', { $scope: $scope});
             $scope.renderPostList = function () {
                 $http.get('api/v1/post/?format=json').then(function (data) {
-                    $scope.currentUser = $scope.$parent.currentUser;
                     $scope.posts = data.data.objects;
-                    console.log($scope);
-                    console.log($scope.$parent.currentUser);
-                    console.log('CurrentScope:', currentScope.currentUser);
                 });
             };
 

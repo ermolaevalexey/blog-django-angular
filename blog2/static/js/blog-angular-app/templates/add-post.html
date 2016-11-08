@@ -1,10 +1,26 @@
 <h1>Добавить новый пост</h1>
-<form class="post-form">
+<form class="post-form" name="postForm" novalidate ng-submit="postForm.$valid && addPost()">
+    <div class="dropdown">
+        <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="">
+          <div class="input-group">
+              <input type="text" name="pubDate" id="pubDate"
+                     class="form-control"
+                     data-ng-model="data.dateDropDownInput"
+                     placeholder="Когда опубликовать" value="{{ data.dateDropDownInput }}">
+              <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-calendar"></i>
+              </span>
+          </div>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day' }"/>
+        </ul>
+    </div>
     <input type="text" name="postTitle" id="postTitle" data-ng-model="title"
-           class="form-control">
+           class="form-control" required>
     <textarea name="postText" id="postText" cols="30" rows="10" data-ng-model="text"
-              class="form-control" rows="10">
+              class="form-control" rows="10" required>
         {{ text }}
     </textarea>
-    <button type="submit" class="save btn btn-primary" data-ng-click="addPost()">Сохранить</button>
+    <button type="submit" class="save btn btn-primary">Сохранить</button>
 </form>

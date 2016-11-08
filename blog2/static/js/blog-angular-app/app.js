@@ -4,7 +4,7 @@
 'use strict';
 
 (function (exports) {
-    exports.blogApp = angular.module('BlogApp', ['ngRoute', 'blogControllers', 'blogDirectives', 'blogFilters'])
+    exports.blogApp = angular.module('BlogApp', ['ngRoute', 'ui.bootstrap.datetimepicker', 'blogControllers', 'blogDirectives', 'blogFilters'])
 
     .config(['$routeProvider',
         function ($routeProvider) {
